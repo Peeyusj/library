@@ -6,42 +6,54 @@ const cancelbtn = document.getElementById("cancelbtn");
 cancelbtn.addEventListener("click", (e) => {
   modalcontainer.classList.remove("show");
 });
+const info = document.getElementById("info");
+function infoclick() {
+  if (info.textContent == "show info") {
+    feedatacontainerid.classList.add("show");
+    info.textContent = "hide info";
+    console.log(info.textContent);
+  } else {
+    feedatacontainerid.classList.remove("show");
+    info.textContent = "show info";
+    console.log("hi");
+  }
+}
+
 const addBtn = document.querySelector("#addbtn");
 addBtn.addEventListener("click", () => {
-   if((form.title.value)&&(form.author.value)&&(form.pages.value)&&(form.compee.value)){
-    if((+form.pages.value>+form.compee.value))
-    addBookToLibrary();
-
-    else{
+  if (
+    form.title.value &&
+    form.author.value &&
+    form.pages.value &&
+    form.compee.value
+  ) {
+    if (+form.pages.value >= +form.compee.value) addBookToLibrary();
+    else {
       alert("Total pages must be greater than the completed pages");
     }
+  } else {
+    alert("Fill All Input Fields");
   }
-  else{
-     alert("Fill All Input Fields"); 
-  }
- 
 });
 
-function set(p,q) {
+function set(p, q) {
   feedbooks = document.getElementById("books");
   feedbooks.textContent = myLibrary.length;
   feedtd = document.getElementById("tp");
   feedcp = document.getElementById("comp");
-if(myLibrary.length>0){
-  const res = p.reduce(
-    (accumulator, currentValue) => +accumulator + +currentValue
-  );
-  feedtd.textContent = res;
-  const res1 = q.reduce(
-    (accumulator, currentValue) => +accumulator + +currentValue
-  );
-  feedcp.textContent = res1;
-}
-else{
-  feedtd.textContent = 0;
-  feedcp.textContent = 0;
-}
-  
+  if (myLibrary.length > 0) {
+    const res = p.reduce(
+      (accumulator, currentValue) => +accumulator + +currentValue
+    );
+    feedtd.textContent = res;
+    const res1 = q.reduce(
+      (accumulator, currentValue) => +accumulator + +currentValue
+    );
+    feedcp.textContent = res1;
+  } else {
+    feedtd.textContent = 0;
+    feedcp.textContent = 0;
+  }
 }
 
 class book {
@@ -62,44 +74,40 @@ function addBookToLibrary() {
   render();
 }
 function render() {
- 
   const display = document.getElementById("Library-container");
   const books = document.querySelectorAll(".book");
   books.forEach((book) => display.removeChild(book));
   for (let i = 0; i < myLibrary.length; i++) {
-      createBook(myLibrary[i]); }
+    createBook(myLibrary[i]);
+  }
   var some = [];
-  var some1=[];
+  var some1 = [];
   myLibrary.map((item) => {
     some.push(item.pages);
   });
   myLibrary.map((item) => {
     some1.push(item.compee);
   });
-  set(some,some1);
- 
+  set(some, some1);
 }
- function rerender(k){
- 
-   myLibrary.splice(k,1);
-   const display = document.getElementById("Library-container");
-   const books = document.querySelectorAll(".book");
-   books.forEach((book) => display.removeChild(book));
-   for (let i = 0; i < myLibrary.length; i++) {
-       createBook(myLibrary[i]); 
-   }
-   var some = [];
-   var some1=[];
-   myLibrary.map((item) => {
-     some.push(item.pages);
-   });
-   myLibrary.map((item) => {
-     some1.push(item.compee);
-   });
-   set(some,some1);
-  
- }
-
+function rerender(k) {
+  myLibrary.splice(k, 1);
+  const display = document.getElementById("Library-container");
+  const books = document.querySelectorAll(".book");
+  books.forEach((book) => display.removeChild(book));
+  for (let i = 0; i < myLibrary.length; i++) {
+    createBook(myLibrary[i]);
+  }
+  var some = [];
+  var some1 = [];
+  myLibrary.map((item) => {
+    some.push(item.pages);
+  });
+  myLibrary.map((item) => {
+    some1.push(item.compee);
+  });
+  set(some, some1);
+}
 
 function createBook(item) {
   const library = document.querySelector("#Library-container");
@@ -108,7 +116,7 @@ function createBook(item) {
   const authDiv = document.createElement("div");
   const pageDiv = document.createElement("div");
   const compeeDiv = document.createElement("div");
-  const removeBtn=document.createElement("button")
+  const removeBtn = document.createElement("button");
 
   bookDiv.classList.add("book");
   bookDiv.setAttribute("id", myLibrary.indexOf(item));
@@ -127,11 +135,11 @@ function createBook(item) {
   compeeDiv.textContent = item.compee;
   compeeDiv.classList.add("compee");
   bookDiv.appendChild(compeeDiv);
-  removeBtn.textContent="delete"
-   bookDiv.appendChild(removeBtn)
-   library.appendChild(bookDiv);
-  removeBtn.addEventListener("click",()=>{rerender(myLibrary.indexOf(item))})
-  
-
-  
+  removeBtn.textContent = "Delete";
+  removeBtn.classList.add("rbtn");
+  bookDiv.appendChild(removeBtn);
+  library.appendChild(bookDiv);
+  removeBtn.addEventListener("click", () => {
+    rerender(myLibrary.indexOf(item));
+  });
 }
