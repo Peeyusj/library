@@ -8,12 +8,17 @@
     <meta name="description" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="style.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
   </head>
   <body>
     <header>
       Library
-    <!-- <button id="signin">Sign in</button> -->
+      <button onclick="infoclick()" style="color: black" id="info">
+        show info
+      </button>
     </header>
     <div class="maincontainer">
       <div class="container">
@@ -28,17 +33,16 @@
               <input type="text" id="author" placeholder="Writer's name" />
               <input type="number" id="pages" placeholder="Total Pages" />
               <input type="number" id="compee" placeholder="Completed Pages" />
-              
             </form>
 
             <div>
-              <button id="cancelbtn">cancel</button>
-              <button id="addbtn">add</button>
+              <button id="cancelbtn">Cancel</button>
+              <button id="addbtn">Add</button>
             </div>
           </div>
         </div>
         <div id="Library-container"></div>
-        <div class="feedatacontainer">
+        <div class="feedatacontainer" , id="feedatacontainerid">
           <div class="feeddata">
             <div class="Info">
               <hr />
@@ -52,13 +56,14 @@
               <!-- Completed Books: <span id="cb"> 0</span><br /> -->
               Total Page: <span id="tp"> 0</span><br />
               Completed: <span id="comp"> 0</span><br />
-              
+
               <hr />
             </div>
-             
+
             <footer>
               <hr />
-              Made By<a href="https://github.com/Peeyusj">@Peeyusj</a><i class="fa fa-github" style="font-size:36px"></i>
+              Made By<a href="https://github.com/Peeyusj">@Peeyusj</a
+              ><i class="fa fa-github" style="font-size: 36px"></i>
               <hr />
             </footer>
           </div>
